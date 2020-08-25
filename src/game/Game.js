@@ -11,12 +11,13 @@ import * as STORE from '../STORE';
 
 function Game(props) {  
   const { currPlayer, setCurrPlayer } = props
-  const InitialBankOfPiecesArr = useRef(helpers.getRandomizedBankOfPiecesArr());
+  const initialBankOfPiecesArr = useRef(helpers.getRandomizedBankOfPiecesArr());
   const [showHowTo, setShowHowTo] = useState(false);
   
   const turn = helpers.whosTurn(STORE.movesArr, STORE.guest, STORE.host);
   const phase = helpers.getPhase(STORE.movesArr);
   const selectedPiece = helpers.getSelectedPiece(STORE.movesArr);
+  const lastPlaced = helpers.getLastPlaced(STORE.movesArr);
   const boardArr = helpers.deriveBoardArr(STORE.movesArr);
   const placedPieces = helpers.derivePlacedPieces(STORE.movesArr);
   const directionString = helpers.createDirectionString(turn, phase, currPlayer, STORE.guest);
@@ -41,6 +42,7 @@ function Game(props) {
       <main>
         <Board 
           boardArr={boardArr}
+          lastPlaced={lastPlaced}
           winner={winner}
         />
         {renderGuestSetupModal && 
@@ -65,12 +67,14 @@ function Game(props) {
         {!isWinner && 
           <>
             <BankOfPieces
-              InitialBankOfPiecesArr={InitialBankOfPiecesArr}
+              initialBankOfPiecesArr={initialBankOfPiecesArr}
               placedPieces={placedPieces}
               selectedPiece={selectedPiece}
             />
             <Directions 
               directionString={directionString}
+              myTurn={turn === currPlayer}
+              phase={phase}
             />
           </>
         }

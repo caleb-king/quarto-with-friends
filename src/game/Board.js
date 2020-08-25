@@ -2,18 +2,25 @@ import React from 'react';
 import { pieceAttributes } from '../STORE';
 
 function Board(props) {
-  const { boardArr, winner } = props;
+  const { boardArr, lastPlaced, winner } = props;
+
+  console.log('lastPlaced: ', lastPlaced);
 
   function renderBoard(boardArr) {
     return boardArr.map((cell, i) => {
       if (cell === null) {
         return <li className="cell" key={i}></li>;
       }
+      let liClass = 'cell';
+      if (i === lastPlaced) {
+        liClass += ' last-placed';
+      }
+      
       const boardPieceClass = pieceAttributes[cell][1] === 0 ?
         'boardPieceLarge':
         'boardPieceSmall';
       return (
-        <li className="cell" key={i}>
+        <li className={liClass} key={i}>
           <img 
             className={boardPieceClass}
             src={`/images/pieces/P${cell}.png`}

@@ -6,7 +6,7 @@ function whosTurn(moves, guest, host) {
   ) {
     return guest;
   }
-  if (moves.length % 2 === 0 && !moves[moves.length - 1].selection) {
+  if (moves.length % 2 === 0 && moves[moves.length - 1].selection === undefined) {
     return guest;
   }
   return host;
@@ -35,6 +35,12 @@ function deriveBoardArr(moves) {
     boardArr[boardLocation] = selectedPiece;
   }
   return boardArr;
+}
+
+// lastPlaced
+function getLastPlaced(moves) {
+  if (moves.length === 0) return null;
+  return moves[moves.length - 1].placement;
 }
 
 function swap(array, i, j) {
@@ -67,7 +73,7 @@ function derivePlacedPieces(moves) {
   moves.forEach(move => {
     placedPieces.push(move.selection);
   });
-  return placedPieces;
+  return placedPieces.slice(0, placedPieces.length - 1);
 }
 
 // createDirectionString
@@ -76,9 +82,9 @@ function createDirectionString(turn, phase, currPlayer, guest) {
 
   const myTurn = turn === currPlayer;
 
-  if (!myTurn && phase === 'selection') return 'Your friend is placing...';
+  if (!myTurn && phase === 'selection') return 'Your friend is selecting...';
 
-  if (!myTurn && phase === 'placement') return 'Your friend is selecting...';
+  if (!myTurn && phase === 'placement') return 'Your friend is placing...';
 
   if (phase === 'selection') return 'SELECT a piece for your opponent';
 
@@ -120,6 +126,7 @@ export {
   getSelectedPiece, 
   deriveBoardArr, 
   getRandomizedBankOfPiecesArr,
+  getLastPlaced,
   derivePlacedPieces,
   createDirectionString, 
   checkForWinningLine,

@@ -38,11 +38,10 @@ const lines = [
 const movesArr = [
   { placement: null, selection: 0 },
   { placement: 10, selection: 5 },
-  { placement: 5, selection: 3 },
-  { placement: 0, selection: 7 },
+  { placement: 4, selection: 3 },
+  { placement: 3, selection: 7 },
   { placement: 15, selection: 8 },
-  { placement: 12, selection: 11 },
-  { placement: 8, selection: 14 },
+  { placement: 12, selection: 6 }
 ];
 
 const guest = 'Toby';

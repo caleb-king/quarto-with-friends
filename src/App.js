@@ -6,7 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import './App.css';
 
 function App() {
-  const [currPlayer, setCurrPlayer] = useState('Caleb');
+  const [currPlayer, setCurrPlayer] = useState('Toby');
 
   return (
     <div className="App">
