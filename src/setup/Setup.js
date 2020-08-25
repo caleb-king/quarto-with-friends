@@ -2,7 +2,8 @@ import React, { useRef } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-function Setup() {
+function Setup(props) {
+  const { setCurrPlayer } = props;
   let history = useHistory();
   const gameID = useRef(uuidv4());
   
@@ -11,6 +12,7 @@ function Setup() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setCurrPlayer(e.target['host-name'].value)
     history.push(`/${gameID.current}`);
 
     // const newGame = {
@@ -51,7 +53,7 @@ function Setup() {
             <label htmlFor="host-name">1) Enter your name</label>
             <div className="input-container">
               <i className="fas fa-user"></i>
-              <input className="host-name" type="text" required />
+              <input className="host-name" id="host-name" type="text" required />
             </div>
             <label htmlFor="game-id">2) Share this link with your friend</label>
             <div className="input-container">

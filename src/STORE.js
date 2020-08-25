@@ -36,17 +36,16 @@ const lines = [
 ];
 
 const movesArr = [
-  { placement: null, selection: 1 },
-  { placement: 15, selection: 5 },
-  { placement: 3, selection: 0 },
-  { placement: 0, selection: 6 },
-  { placement: 4, selection: 8 },
+  { placement: null, selection: 0 },
+  { placement: 10, selection: 5 },
+  { placement: 5, selection: 3 },
+  { placement: 0, selection: 7 },
+  { placement: 15, selection: 8 },
   { placement: 12, selection: 11 },
   { placement: 8, selection: 14 },
 ];
 
 const guest = 'Toby';
-const host = 'Terrence';
-const currPlayer = undefined;
+const host = 'Caleb';
 
-export { pieceAttributes, lines, movesArr, guest, host, currPlayer }
+export { pieceAttributes, lines, movesArr, guest, host }

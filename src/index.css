@@ -44,7 +44,7 @@ h2 {
 }
 
 main {
-  padding: 0 10%;
+  padding: 0 5%;
 }
 
 .comparing-attributes, .ordered-set-of-pieces {
@@ -99,18 +99,37 @@ p {
 
 .fixed {
   position: fixed;
-  top: 100px;
+  top: 75px;
   left: 50%;
-  margin-left: -129px;
+  margin-left: -150px;
+  width: 300px;
 }
 
-input {
+.modal img {
+  width: 75%;
+  display:block;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+.modal .fa-times {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+input, select {
   padding: 5px 5px;
   width: 185px;
 }
 
-input:focus {
+input:focus, select:focus {
   outline: 2px solid #DE9AE8;
+}
+
+input, select {
+  padding: 5px 5px;
+  width: 150px;
 }
 
 .button:active {
@@ -121,4 +140,70 @@ input:focus {
 .button:focus {
   outline: none;
   background-color: #ce6bdd;
+}
+
+.board-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  width: 300px;
+  min-width: 300px;
+}
+
+.cell {
+  width: 75px;
+  height: 75px;
+  border: solid #1E1E1E 3px;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boardPieceLarge {
+  max-width: auto;
+  max-height: 100%;
+}
+
+.boardPieceSmall {
+  max-width: auto;
+  max-height: 50%;
+}
+
+.winning-cell {
+  border: solid #F5D005 3px;
+  border-radius: 3px;
+}
+
+.losing-cell {
+  border: solid #41B6E6 3px;
+  border-radius: 3px;
+}
+
+.end-game-message-container {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.winning-words {
+  color: #F5D005;
+}
+
+.losing-words {
+  font-size: 16px;
+}
+
+.winning-gif, .losing-gif {
+  max-width: auto;
+  max-height: 100%;
+  margin-bottom: 15px;
 }

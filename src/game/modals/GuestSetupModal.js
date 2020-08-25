@@ -1,8 +1,12 @@
 import React from 'react';
 
-function GuestSetupModal() {
+function GuestSetupModal(props) {
+  const { setCurrPlayer, setShowHowTo } = props;
+  
   function handleSubmit(e) {
     e.preventDefault();
+    setCurrPlayer(e.target['guest-name'].value);
+    setShowHowTo(true);
 
     // const updateGuest = {
     //   gameId: gameID,
@@ -21,7 +25,7 @@ function GuestSetupModal() {
     //     return res.json();
     //   })
     //   .then(game => {
-    //     props.updateCurrPlayer(game.guest);
+    //     props.setCurrPlayer(game.guest);
     //     props.displayHowToPlayModal();
     //   })
     //   .catch(error => {
@@ -35,7 +39,7 @@ function GuestSetupModal() {
         <label htmlFor="guest-name">Enter your name below</label>
         <div className="input-container">
           <i className="fas fa-user"></i>
-          <input className="guest-name" type="text" required />
+          <input className="guest-name" id="guest-name" type="text" required />
         </div>
 
         <div className="button-container">
