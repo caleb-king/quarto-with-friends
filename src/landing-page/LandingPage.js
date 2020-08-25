@@ -16,7 +16,7 @@ function LandingPage() {
         <p>The goal is to place the fourth piece in a row or diagonal where each piece shares one attribute in common.</p>
         <p>The twist is that your opponent chooses the piece you place on the board each turn.</p>
         <div className="button-container">
-          <Link to='/setup' className="link-button">
+          <Link to='/setup' className="button">
             START A GAME
           </Link>
         </div>
