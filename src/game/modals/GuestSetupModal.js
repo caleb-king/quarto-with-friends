@@ -9,6 +9,8 @@ function GuestSetupModal(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
+    // check that guest name is distinct from host name
+
     const updateGuest = {
       guest: e.target['guest-name'].value,
     }

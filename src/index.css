@@ -151,6 +151,10 @@ input, select {
   background-color: #ce6bdd;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .board-container {
   width: 100%;
   display: flex;

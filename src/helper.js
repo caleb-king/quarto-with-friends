@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 function createMovesArr(knexResult) {
   if (knexResult.length === 0) return [];
   const movesArr = [];
@@ -13,15 +15,35 @@ function createMovesArr(knexResult) {
   return movesArr;
 }
 
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
+
 function whosTurn(moves, guest, host) {
   if (moves.length === 0) return host;
   if (
     moves.length % 2 === 1 &&
-    moves[moves.length - 1].selection !== undefined
+    moves[moves.length - 1].selection !== null
   ) {
     return guest;
   }
-  if (moves.length % 2 === 0 && moves[moves.length - 1].selection === undefined) {
+  if (moves.length % 2 === 0 && moves[moves.length - 1].selection === null) {
     return guest;
   }
   return host;
@@ -30,14 +52,14 @@ function whosTurn(moves, guest, host) {
 // phase
 function getPhase(moves) {
   if (moves.length === 0) return 'selection';
-  if (moves[moves.length - 1].selection === undefined) return 'selection';
+  if (moves[moves.length - 1].selection === null) return 'selection';
   return 'placement';
 }
 
 // selectedPiece
 function getSelectedPiece(moves) {
   if (moves.length === 0) return null;
-  if (moves[moves.length - 1].selection === undefined) return null;
+  if (moves[moves.length - 1].selection === null) return null;
   return moves[moves.length - 1].selection;
 }
 
@@ -135,8 +157,16 @@ function checkForWinningLine(boardArr, lines, pieceAttributes) {
   return null;
 }
 
+function getTimeBetweenPolls(currPlayer, turn, guest) {
+  if (!currPlayer) return null;
+  if (!guest) return 5000
+  if (turn === currPlayer) return null;
+  return 5000;
+}
+
 export { 
   createMovesArr,
+  useInterval,
   whosTurn, 
   getPhase,
   getSelectedPiece, 
@@ -146,4 +176,5 @@ export {
   derivePlacedPieces,
   createDirectionString, 
   checkForWinningLine,
+  getTimeBetweenPolls,
 }

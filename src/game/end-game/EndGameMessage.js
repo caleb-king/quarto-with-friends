@@ -1,7 +1,26 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { API_ENDPOINT } from '../../config';
 
 function EndGameMessage(props) {
-  const {isCurrPlayer} = props;
+  const { isCurrPlayer, handleReset } = props;
+  const gameId = useParams().gameId;
+
+  function resetGame() {
+    fetch(`${API_ENDPOINT}/games/${gameId}/moves`, {
+      method: 'DELETE',
+      })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e));
+      })
+      .then(() => {
+        handleReset();
+      })
+      .catch(error => {
+        console.error({ error });
+      });
+  }
   
   function renderWinningMessage() {
     return (
@@ -13,7 +32,7 @@ function EndGameMessage(props) {
           alt="Fun celebratory dance"
         />
         <div className="button-container">
-          <button className="button" type="button">
+          <button className="button" type="button" onClick={resetGame}>
             PLAY AGAIN
           </button>
         </div>
@@ -31,7 +50,7 @@ function EndGameMessage(props) {
           alt="Sad neon crying woman"
         />
         <div className="button-container">
-          <button className="button" type="button">
+          <button className="button" type="button" onClick={resetGame}>
             PLAY AGAIN
           </button>
         </div>
