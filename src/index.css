@@ -105,6 +105,10 @@ p {
   box-shadow: 3px 3px 5px 3px rgba(65, 182, 230, .5);
 }
 
+.setup-game {
+  padding-left: 15px;
+}
+
 .fixed {
   position: fixed;
   top: 75px;
@@ -127,18 +131,13 @@ p {
   cursor: pointer;
 }
 
-input, select {
-  padding: 5px 5px;
-  width: 185px;
-}
-
 input:focus, select:focus {
   outline: 2px solid #DE9AE8;
 }
 
 input, select {
   padding: 5px 5px;
-  width: 150px;
+  width: 175px;
 }
 
 .button:active {
@@ -233,8 +232,52 @@ input, select {
 }
 
 .selected-piece {
-  box-shadow: 0 0 3pt 2pt #ffffff;
-  /* outline: white solid 2px; */
+  box-shadow: 0 4px 2px -2px #ffffff;
+
+  -webkit-animation-name: blinker;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  
+  -moz-animation-name: blinker;
+  -moz-animation-duration: 2s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  
+  animation-name: blinker;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+  0% { opacity: 1.0; }
+  30% { opacity: 1.0; }
+  40% { opacity: 0; }
+  50% { opacity: 1.0; }
+  60% { opacity: 0; }
+  70% { opacity: 1.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker { 
+  0% { opacity: 1.0; }
+  30% { opacity: 1.0; }
+  40% { opacity: 0; }
+  50% { opacity: 1.0; }
+  60% { opacity: 0; }
+  70% { opacity: 1.0; }
+  100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+  0% { opacity: 1.0; }
+  30% { opacity: 1.0; }
+  40% { opacity: 0; }
+  50% { opacity: 1.0; }
+  60% { opacity: 0; }
+  70% { opacity: 1.0; }
+  100% { opacity: 1.0; }
 }
 
 .last-placed {
@@ -300,4 +343,182 @@ input, select {
 .placement-phase {
   color: #41B6E6;
   font-weight: bold;
+}
+
+
+@media (min-height: 750px) {
+  p {
+    font-size: 14px;
+    padding: 15px 0;
+  }
+
+  .button-container {
+    margin-top: 20px;
+  }
+
+  .ordered-set-of-pieces {
+    margin-top: 5vh;
+  }
+
+  .modal {
+    margin-top: 30px;
+  }
+
+  .board {
+    margin-top: 30px;
+  }
+
+  .bank-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .direction-container {
+    margin-top: 15px;
+  }
+
+  .direction {
+    padding-top: 0px;
+  }
+
+  .end-game-message-container {
+    margin-top: 10vh;
+  }
+
+  .losing-words {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-height: 1000px) {
+  p {
+    font-size: 16px;
+    padding: 15px 0;
+  }
+
+  main {
+    margin-top: 5vh;
+  }
+
+  .ordered-set-of-pieces {
+    margin-top: 10vh;
+  }
+
+  .bank-container {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+  }
+
+  .direction-container {
+    margin-top: 10vh;
+  }
+}
+
+@media (min-width: 400px) {
+  h1 {
+    margin-left: -120px
+  }
+}
+
+@media (min-width: 768px) {
+  .logo {
+    height: 75px;
+    width: 75px;
+    margin: 10px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    top: 20px;
+    margin-left: -185px
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  label {
+    font-size: 20px
+  }
+
+  .direction {
+    font-size: 24px;
+  }
+
+  .button {
+    font-size: 20px;
+    padding: 15px 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    max-width: 750px;
+  }
+
+  .comparing-attributes, .ordered-set-of-pieces {
+    display: block;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .modal {
+    display: block;
+    max-width: 400px;
+  }
+
+  .board {
+    width: 450px;
+    min-width: 450px;
+  }
+  
+  .cell {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+  }
+
+  .bank {
+    width: 550px;
+    min-width: 550px;
+  }
+  
+  .smallBankPiece {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .largeBankPiece {
+    width: 90px;
+    height: 90px;
+  }
+
+  .board {
+    margin-top: 5vh;
+  }
+
+  .bank-container {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+  }
+
+  .direction-container{
+    margin-top: 5vh;
+  } 
+
+  .end-game-message-container {
+    margin-top: 5vh;
+  }
+
+  .winning-gif, .losing-gif {
+    max-width: auto;
+    max-height: 150px;
+    margin-bottom: 15px;
+}
 }
