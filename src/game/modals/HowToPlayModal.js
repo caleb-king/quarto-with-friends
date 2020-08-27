@@ -8,7 +8,7 @@ function HowToPlayModal(props) {
   }
   
   return (
-    <div className="modal fixed">
+    <div className="modal fixed how-to-play-container">
       <h2>How To Play</h2>
       <i className="fas fa-times" onClick={closeModal}></i>
       <p>Quarto is a modern classic strategy game using pieces which combine 4 attributes – size, color, shape, and consistency:</p>

@@ -20,7 +20,7 @@ body {
 }
 
 header {
-  height: 60px;
+  min-height: 60px;
 }
 
 .logo{
@@ -397,10 +397,6 @@ input, select {
     padding: 15px 0;
   }
 
-  main {
-    margin-top: 5vh;
-  }
-
   .ordered-set-of-pieces {
     margin-top: 10vh;
   }
@@ -461,7 +457,7 @@ input, select {
     max-width: 750px;
   }
 
-  .comparing-attributes, .ordered-set-of-pieces {
+  .comparing-attributes, .ordered-set-of-pieces, .game-setup-container {
     display: block;
     max-width: 400px;
     margin-left: auto;
@@ -469,8 +465,13 @@ input, select {
   }
 
   .modal {
-    display: block;
     max-width: 400px;
+  }
+
+  .how-to-play-container {
+    width: 600px;
+    max-width: 600px;
+    margin-left: -300px;
   }
 
   .board {

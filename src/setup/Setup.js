@@ -43,7 +43,7 @@ function Setup(props) {
         <h1>Quarto With Friends</h1>
       </header>
       <main>
-        <div className="modal">
+        <div className="modal game-setup-container">
           <h2>Set Up Your Game</h2>
           <form id="setup-game" className="setup-game" onSubmit={handleSubmit}>
             <label htmlFor="host-name">1) Enter your name</label>
