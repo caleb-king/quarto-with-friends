@@ -1,3 +1,18 @@
+function createMovesArr(knexResult) {
+  if (knexResult.length === 0) return [];
+  const movesArr = [];
+  knexResult.forEach(move => {
+    if (movesArr.length === 0) {
+      movesArr.push({ placement: null, selection: move.value });
+    } else if (move.moveType === 'placement') {
+      movesArr.push({ placement: move.value, selection: null });
+    } else {
+      movesArr[movesArr.length - 1].selection = move.value;
+    }
+  });
+  return movesArr;
+}
+
 function whosTurn(moves, guest, host) {
   if (moves.length === 0) return host;
   if (
@@ -86,7 +101,7 @@ function createDirectionString(turn, phase, currPlayer, guest) {
 
   if (!myTurn && phase === 'placement') return 'Your friend is placing...';
 
-  if (phase === 'selection') return 'SELECT a piece for your opponent';
+  if (phase === 'selection') return 'SELECT a piece for your friend';
 
   return 'PLACE the selected piece on the board';
 }
@@ -121,6 +136,7 @@ function checkForWinningLine(boardArr, lines, pieceAttributes) {
 }
 
 export { 
+  createMovesArr,
   whosTurn, 
   getPhase,
   getSelectedPiece, 

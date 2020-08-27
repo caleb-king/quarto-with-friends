@@ -1,43 +1,39 @@
 import React, { useRef } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { BASE_URL, API_ENDPOINT } from '../config';
 
 function Setup(props) {
   const { setCurrPlayer } = props;
   let history = useHistory();
-  const gameID = useRef(uuidv4());
-  
-  // GET FROM CONFIG BASE_URL
-  const BASE_URL = 'http://localhost:3000';
+  const gameId = useRef(uuidv4());
 
   function handleSubmit(e) {
     e.preventDefault();
-    setCurrPlayer(e.target['host-name'].value)
-    history.push(`/${gameID.current}`);
 
-    // const newGame = {
-    //   gameId: gameID,
-    //   host: e.target['host-name'].value,
-    // }
-    // fetch(`${config.API_ENDPOINT}/games`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'application/json'
-    //   },
-    //   body: JSON.stringify(newGame),
-    // })
-    //   .then(res => {
-    //     if (!res.ok)
-    //       return res.json().then(e => Promise.reject(e));
-    //     return res.json();
-    //   })
-    //   .then(game => {
-    //     props.updateCurrPlayer(game.host);
-    //     history.push(`/${game.gameID}`);
-    //   })
-    //   .catch(error => {
-    //     console.error({ error });
-    //   });
+    const newGame = {
+      gameId: gameId.current,
+      host: e.target['host-name'].value,
+    }
+    fetch(`${API_ENDPOINT}/games`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newGame),
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e));
+        return res.json();
+      })
+      .then(game => {
+        setCurrPlayer(game.host);
+        history.push(`/${game.id}`);
+      })
+      .catch(error => {
+        console.error({ error });
+      });
   }
   
   return (
@@ -60,7 +56,7 @@ function Setup(props) {
               <i className="fas fa-share-alt"></i>
               <input 
                 type="text" 
-                value={`${BASE_URL}${useLocation().pathname}/${gameID.current}`}
+                value={`${BASE_URL}/${gameId.current}`}
                 name="game-id"
                 readOnly/>
             </div>

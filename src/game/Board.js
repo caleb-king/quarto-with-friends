@@ -4,8 +4,6 @@ import { pieceAttributes } from '../STORE';
 function Board(props) {
   const { boardArr, lastPlaced, winner } = props;
 
-  console.log('lastPlaced: ', lastPlaced);
-
   function renderBoard(boardArr) {
     return boardArr.map((cell, i) => {
       if (cell === null) {

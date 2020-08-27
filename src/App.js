@@ -6,7 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import './App.css';
 
 function App() {
-  const [currPlayer, setCurrPlayer] = useState('Toby');
+  const [currPlayer, setCurrPlayer] = useState(null);
 
   return (
     <div className="App">
@@ -16,7 +16,7 @@ function App() {
             setCurrPlayer={setCurrPlayer}
           />
         )} />
-        <Route path="/:gameID" render={() => (
+        <Route path="/:gameId" render={() => (
           <Game 
           currPlayer={currPlayer}
           setCurrPlayer={setCurrPlayer}

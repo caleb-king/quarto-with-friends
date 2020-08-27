@@ -1,36 +1,37 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { API_ENDPOINT } from '../../config';
 
 function GuestSetupModal(props) {
-  const { setCurrPlayer, setShowHowTo } = props;
+  const { setCurrPlayer, setShowHowTo, setGuest } = props;
+  const gameId = useParams().gameId;
   
   function handleSubmit(e) {
     e.preventDefault();
-    setCurrPlayer(e.target['guest-name'].value);
-    setShowHowTo(true);
 
-    // const updateGuest = {
-    //   gameId: gameID,
-    //   guest: e.target['guest-name'].value,
-    // }
-    // fetch(`${config.API_ENDPOINT}/games`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'application/json'
-    //   },
-    //   body: JSON.stringify(updateGuest),
-    // })
-    //   .then(res => {
-    //     if (!res.ok)
-    //       return res.json().then(e => Promise.reject(e));
-    //     return res.json();
-    //   })
-    //   .then(game => {
-    //     props.setCurrPlayer(game.guest);
-    //     props.displayHowToPlayModal();
-    //   })
-    //   .catch(error => {
-    //     console.error({ error });
-    //   });
+    const updateGuest = {
+      guest: e.target['guest-name'].value,
+    }
+    fetch(`${API_ENDPOINT}/games/${gameId}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updateGuest),
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e));
+        return res.json();
+      })
+      .then((game) => {
+        setCurrPlayer(game.guest);
+        setShowHowTo(true);
+        setGuest(game.guest);
+      })
+      .catch(error => {
+        console.error({ error });
+      });
   }
   
   return (
