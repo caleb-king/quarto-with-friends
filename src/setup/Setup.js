@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { BASE_URL, API_ENDPOINT } from '../config';
@@ -7,6 +7,9 @@ function Setup(props) {
   const { setCurrPlayer } = props;
   let history = useHistory();
   const gameId = useRef(uuidv4());
+
+  // STATE
+  const [displayCopy, setDisplayCopy] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,6 +39,11 @@ function Setup(props) {
       });
   }
   
+  function handleCopyURL() {
+    navigator.clipboard.writeText(`${BASE_URL}/${gameId.current}`);
+    setDisplayCopy(true);
+  }
+
   return (
     <>
       <header>
@@ -62,8 +70,12 @@ function Setup(props) {
               <button 
                 type="button"
                 className="copy-button"
-                onClick={() =>  navigator.clipboard.writeText(`${BASE_URL}/${gameId.current}`)}>
+                onClick={handleCopyURL}>
                 <i className="fas fa-copy"></i>
+                {
+                  displayCopy &&
+                  <p className="copy-success">Copied!</p>
+                }
               </button>
             </div>
 
