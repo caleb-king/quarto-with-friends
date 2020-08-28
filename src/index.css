@@ -93,6 +93,16 @@ p {
   box-shadow: 3px 3px 5px 0 rgba(222, 154, 232, .5);
 }
 
+.copy-button {
+  cursor: pointer;
+  padding: 6px 5px 6px 0;
+  margin-left: 15px;
+  background-color: #DE9AE8;
+  border-radius: 3px;
+  border: solid 1px #DB3EB1;
+  box-shadow: 3px 3px 5px 0 rgba(222, 154, 232, .5);
+}
+
 .modal .button-container {
   padding-top: 10px;
 }
@@ -140,12 +150,12 @@ input, select {
   width: 175px;
 }
 
-.button:active {
+.button:active, .copy-butto:active {
   outline: none;
   background-color: #ce6bdd;
 }
 
-.button:focus {
+.button:focus, .copy-button:focus {
   outline: none;
   background-color: #ce6bdd;
 }
@@ -454,7 +464,7 @@ input, select {
 
 @media (min-width: 1024px) {
   main {
-    max-width: 750px;
+    max-width: 700px;
   }
 
   .comparing-attributes, .ordered-set-of-pieces, .game-setup-container {
@@ -486,8 +496,8 @@ input, select {
   }
 
   .bank {
-    width: 550px;
-    min-width: 550px;
+    width: 600px;
+    min-width: 600px;
   }
   
   .smallBankPiece {

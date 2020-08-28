@@ -59,6 +59,12 @@ function Setup(props) {
                 value={`${BASE_URL}/${gameId.current}`}
                 name="game-id"
                 readOnly/>
+              <button 
+                type="button"
+                className="copy-button"
+                onClick={() =>  navigator.clipboard.writeText(`${BASE_URL}/${gameId.current}`)}>
+                <i className="fas fa-copy"></i>
+              </button>
             </div>
 
             <div className="button-container">
