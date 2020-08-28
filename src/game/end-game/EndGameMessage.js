@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { API_ENDPOINT } from '../../config';
 
 function EndGameMessage(props) {
-  const { isCurrPlayer, handleReset } = props;
+  const { isCurrPlayer, handleReset, draw } = props;
   const gameId = useParams().gameId;
 
   function resetGame() {
@@ -58,9 +58,25 @@ function EndGameMessage(props) {
     );
   }
 
-  const endGameMessage = isCurrPlayer ?
-    renderWinningMessage() :
-    renderLosingMessage();
+  function renderDraw() {
+    return (
+      <>
+        <h2 className="losing-words">DRAW! Nice defense.</h2>
+        <div className="button-container">
+          <button className="button" type="button" onClick={resetGame}>
+            PLAY AGAIN
+          </button>
+        </div>
+      </>
+    );
+  }
+
+  function determineEndGameToRender() {
+    if (draw) return renderDraw();
+    if (isCurrPlayer) return renderWinningMessage();
+    return renderLosingMessage();
+  }
+  let endGameMessage = determineEndGameToRender();
   
   return (
     <div className="end-game-message-container">

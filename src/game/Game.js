@@ -67,8 +67,11 @@ function Game(props) {
     winner.isCurrPlayer = turn === currPlayer;
   }
 
+  // Check for draw
+  const draw = (movesArr.length === 17) && (winner.line === null);
+
   // Calculate variable values used for conditional rendering
-  const isWinner = winner.isCurrPlayer !== null;
+  const displayEndGame = winner.isCurrPlayer !== null || draw;
   const renderGuestSetupModal = !currPlayer && !guest;
   const renderSelectName = 
     !currPlayer && host && guest;
@@ -166,7 +169,7 @@ function Game(props) {
               setShowHowTo={setShowHowTo}
             />
         }
-        {!isWinner && 
+        {!displayEndGame && 
           <>
             <BankOfPieces
               initialBankOfPiecesArr={initialBankOfPiecesArr}
@@ -182,10 +185,11 @@ function Game(props) {
             />
           </>
         }
-        {isWinner &&
+        {displayEndGame &&
           <EndGameMessage 
             isCurrPlayer={winner.isCurrPlayer}
             handleReset={handleReset}
+            draw={draw}
           />
         }
       </main>
