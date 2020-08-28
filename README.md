@@ -1,68 +1,105 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Quarto With Friends
+* [live app](https://quarto-with-friends.vercel.app/)
 
-## Available Scripts
+## Summary
 
-In the project directory, you can run:
+<br>
 
-### `npm start`
+Quarto With Friends is a web app which provides a way to remotely play the game Quarto with a friend. You share the link and then alternate turns selecting and placing pieces until a winner is declared. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Quarto is a modern classic strategy game using pieces which combine 4 attributes – size, color, shape, and consistency:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<br>
 
-### `npm test`
+<a href="Comparing Attributes"><img src="public/images/attribute-comparison.png" width="360" ></a><br><br>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The goal is to place the fourth piece in a row or diagonal where each piece shares one attribute in common.
 
-### `npm run build`
+The twist is that your opponent chooses the piece you place on the board each turn.
+<br><br>
+## Screenshots
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Game Setup:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<a href="Game Setup"><img src="public/images/screenshots/game-setup-screenshot.png" width="360" ></a><br><br><br>
 
-### `npm run eject`
+**Gameplay:**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<a href="Game Play"><img src="public/images/screenshots/gameplay-screenshot.png" width="360" ></a><br><br><br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Winner: (with neon dancing GIF)** 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<a href="Game Play"><img src="public/images/screenshots/winning-screenshot.png" width="360" ></a><br><br><br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<br>
 
-## Learn More
+## Technical Requirements
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Uses React, Node, Express, and PostgreSQL.
+* The client and API are deployed separately and stored in separate GitHub repos. (The GitHub for the API can be found [here](https://github.com/caleb-king/quarto-with-friends-server))
+* Uses a responsive and mobile-first design.
+* Uses semantic HTML/JSX.
+* Uses vanilla CSS for styling.
+* Both client- and server-side code is tested.
+* Includes a landing page that explains what the app does and how to get started.
+* Is live and publicly-accessible.
+* Follows a11y best practices.
+* Works across different browsers. (Chrome, Firefox, and Safari)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br><br>
 
-### Code Splitting
+# Quarto With Friends API
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Resources
 
-### Analyzing the Bundle Size
+There are two main resources accessible through the Quarto With Friends API:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+1) Games
+2) Moves
 
-### Making a Progressive Web App
+An example game:
+> {<br>
+  id: 'e1564da3-797a-4fb1-975e-4f3935d7eeca' ,<br>
+  host: 'Caleb' ,<br>
+  guest: 'Toby' ,<br>
+}
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+An example move:
+> {<br>
+  id: 24 ,<br>
+  gameId: 'e1564da3-797a-4fb1-975e-4f3935d7eeca' ,<br>
+  moveType: 'selection' ,<br>
+  value: 7 ,<br>
+}
 
-### Advanced Configuration
+<br>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Available Endpoints
 
-### Deployment
+### Base URL : `'https://obscure-harbor-97497.herokuapp.com'`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Route: `/games`
 
-### `npm run build` fails to minify
+* `GET '/games'`
+* `POST '/games'`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Route: `/games/:gameId`
+
+* `GET '/games/:gameId'`
+* `PATCH '/games/:gameId'`
+
+### Route: `/games/:gameId/moves`
+
+* `GET '/games/:gameId/moves'`
+* `POST '/games/:gameId/moves'`
+* `DELETE '/games/:gameId/moves'`
+
+<br>
+
+## Scripts
+
+Start the application `npm start`
+
+Run the tests `npm test`
